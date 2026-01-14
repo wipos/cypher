@@ -89,19 +89,42 @@ activate-nessus:
     echo ""
     echo "Nessus is pre-installed on Cypher."
     echo ""
+    
+    # Check if Nessus service exists
+    if ! systemctl list-unit-files | grep -q nessusd.service; then
+        echo "ERROR: Nessus service not found!"
+        echo "Nessus may not be installed correctly."
+        echo "Please check build logs or install manually from:"
+        echo "https://www.tenable.com/downloads/nessus"
+        exit 1
+    fi
+    
+    # Check if service is running
+    if systemctl is-active --quiet nessusd; then
+        echo "✓ Nessus service is running"
+    else
+        echo "Starting Nessus service..."
+        sudo systemctl start nessusd
+        if systemctl is-active --quiet nessusd; then
+            echo "✓ Nessus service started successfully"
+        else
+            echo "⚠ Failed to start Nessus service"
+            echo "Try manually: sudo systemctl start nessusd"
+        fi
+    fi
+    
+    echo ""
     echo "To activate Nessus:"
     echo ""
-    echo "1. Start the Nessus service (if not already running):"
-    echo "   sudo systemctl start nessusd"
+    echo "1. Access the web interface at: https://localhost:8834"
+    echo "   (You may see a certificate warning - this is normal)"
     echo ""
-    echo "2. Access the web interface at: https://localhost:8834"
-    echo ""
-    echo "3. Complete the setup wizard and register for a license at:"
+    echo "2. Complete the setup wizard and register for a license at:"
     echo "   https://www.tenable.com/products/nessus/nessus-essentials"
     echo ""
-    echo "4. Enter your activation code in the setup wizard"
+    echo "3. Enter your activation code in the setup wizard"
     echo ""
-    echo "5. Wait for plugins to download (may take 20-30 minutes)"
+    echo "4. Wait for plugins to download (may take 20-30 minutes)"
     echo ""
     echo "Note: Nessus Essentials is free for home use (up to 16 IPs)."
     echo "For professional use, consider Nessus Professional."

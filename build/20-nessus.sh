@@ -66,7 +66,7 @@ else
     echo "Nessus may require manual installation."
     echo ""
     echo "To install Nessus manually after system deployment:"
-    echo "1. Run: ujust install-nessus"
+    echo "1. Run: ujust activate-nessus"
     echo "   OR"
     echo "2. Visit: https://www.tenable.com/downloads/nessus"
     echo "3. Download: ${NESSUS_FILENAME}"
