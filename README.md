@@ -10,6 +10,34 @@ This template uses the **multi-stage build architecture** from , combining resou
 
 > Be the one who moves, not the one who is moved.
 
+## What Makes Cypher Different?
+
+Cypher is a Linux distribution built specifically for penetration testing and security research. Based on Universal Blue/Bluefin, it includes:
+
+### Built-in Pentesting Tools (Build-time)
+- **hashcat** - Advanced password recovery and GPU-accelerated hash cracking
+- **hashcat-doc** - Documentation for hashcat usage
+
+### Additional Pentesting Tools (Runtime via Homebrew)
+Install with `ujust install-default-apps`:
+- **nmap** - Network discovery and security auditing
+- **masscan** - High-speed port scanner
+- **john-jumbo** - John the Ripper password cracker
+- **hydra** - Network authentication cracker
+- **sqlmap** - Automated SQL injection detection and exploitation
+- **metasploit** - Penetration testing framework
+- **aircrack-ng** - WiFi security auditing tools
+- **nikto** - Web server vulnerability scanner
+- **gobuster** - Directory/file/DNS brute-forcing tool
+- **feroxbuster** - Fast content discovery tool
+
+### Commercial Tools
+- **Nessus** - Professional vulnerability scanner (requires license)
+  - Use `ujust install-nessus` for installation helper
+  - Free Essentials version available for home use (up to 16 IPs)
+
+*Last updated: 2026-01-14*
+
 ## Guided Copilot Mode
 
 Here are the steps to guide copilot to make your own repo, or just use it like a regular image template.
