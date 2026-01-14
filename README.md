@@ -1,4 +1,4 @@
-# finpilot
+# cypher
 
 A template for building custom bootc operating system images based on the lessons from [Universal Blue](https://universal-blue.org/) and [Bluefin](https://projectbluefin.io). It is designed to be used manually, but is optimized to be bootstraped by GitHub Copilot. After set up you'll have your own custom Linux. 
 
@@ -9,6 +9,26 @@ This template uses the **multi-stage build architecture** from , combining resou
  Instead, you create your own OS repository based on this template, allowing full customization while leveraging Bluefin's robust build system and shared components.
 
 > Be the one who moves, not the one who is moved.
+
+## What Makes Cypher Different?
+
+Cypher is a custom bootc operating system built from the Universal Blue template. This image is based on **Fedora Silverblue** with GNOME desktop and includes the following customizations:
+
+### Base Configuration
+- **Base Image**: Fedora Silverblue (GNOME desktop environment)
+- **Build System**: Multi-stage OCI architecture following Bluefin patterns
+- **Package Manager**: Uses dnf5 for system packages, Homebrew for user packages
+
+### Added Features
+- **Homebrew Integration**: Pre-configured for easy CLI tool installation
+- **Flatpak Support**: Automatic application installation on first boot
+- **Custom Commands**: ujust shortcuts for common tasks
+
+### System Configuration
+- **Enabled Services**: Podman socket for container management
+- **Build Architecture**: Multi-stage OCI container builds with Renovate auto-updates
+
+*Last updated: 2026-01-14*
 
 ## Guided Copilot Mode
 
@@ -67,7 +87,7 @@ Click "Use this template" to create a new repository from this template.
 
 ### 2. Rename the Project
 
-Important: Change `finpilot` to your repository name in these 6 files:
+Important: Change `cypher` to your repository name in these 6 files:
 
 1. `Containerfile` (line 4): `# Name: your-repo-name`
 2. `Justfile` (line 1): `export image_name := env("IMAGE_NAME", "your-repo-name")`

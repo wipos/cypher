@@ -3,22 +3,27 @@
 ## Initial Setup
 
 ### 1. Rename Template
-- [ ] Update `finpilot` to your name in: Containerfile, Justfile, README.md, artifacthub-repo.yml
+- [x] Update `finpilot` to `cypher` in: Containerfile, Justfile, README.md, artifacthub-repo.yml, custom/ujust/README.md, .github/workflows/clean.yml
+- [x] Add "What Makes Cypher Different" section to README.md
 
 ### 2. Enable GitHub Actions
-- [ ] Settings → Actions → General → Enable workflows
-- [ ] Set "Read and write permissions"
+- [ ] Go to the repository "Actions" tab on GitHub
+- [ ] Click "I understand my workflows, go ahead and enable them"
+- [ ] Actions will automatically start building the image
 
-### 3. First Push
-```bash
-git add .
-git commit -m "feat: initial customization"
-git push origin main
-```
+**Note**: This step must be done manually through the GitHub web interface.
 
-### 4. Deploy
+### 3. First Build
+Once Actions are enabled, the first build will start automatically. You can monitor it in the Actions tab.
+
+The build will:
+- Build the container image
+- Push to GitHub Container Registry (ghcr.io)
+- Create tags: `:stable`, `:stable.YYYYMMDD`, `:YYYYMMDD`
+
+### 4. Deploy (After Build Completes)
 ```bash
-sudo bootc switch --transport registry ghcr.io/YOUR_USERNAME/YOUR_REPO:stable
+sudo bootc switch --transport registry ghcr.io/wipos/cypher:stable
 sudo systemctl reboot
 ```
 
@@ -27,7 +32,22 @@ sudo systemctl reboot
 ### Enable Signing (Recommended)
 ```bash
 cosign generate-key-pair
-# Add cosign.key to GitHub Secrets as SIGNING_SECRET
-# Uncomment signing in .github/workflows/build.yml
+# Add cosign.key content to GitHub Secrets as SIGNING_SECRET
+# Settings → Secrets and variables → Actions → New repository secret
+# Name: SIGNING_SECRET
+# Value: <paste entire contents of cosign.key>
+# Then uncomment signing steps in .github/workflows/build.yml
 ```
+
+### Enable SBOM Generation (Recommended)
+After enabling signing, uncomment SBOM steps in .github/workflows/build.yml
+
+## Repository Information
+
+- **Repository**: wipos/cypher
+- **Image Registry**: ghcr.io/wipos/cypher
+- **Base Image**: Fedora Silverblue with GNOME
+- **Build Frequency**: On every push to main, daily at 10:05 UTC
+- **Renovate**: Runs every 6 hours to update dependencies
+- **Image Cleanup**: Deletes images older than 90 days (weekly)
 
