@@ -79,27 +79,32 @@ install-vscode:
 install-gimp:
     ujust install-flatpak org.gimp.GIMP
 
-# Install Nessus vulnerability scanner (requires manual download and license)
+# Activate Nessus vulnerability scanner (pre-installed, requires activation)
 [group('Pentesting')]
-install-nessus:
+activate-nessus:
     #!/usr/bin/env bash
     echo "=========================================="
-    echo "Nessus Installation Helper"
+    echo "Nessus Activation Helper"
     echo "=========================================="
     echo ""
-    echo "Nessus is a commercial vulnerability scanner from Tenable."
-    echo "To install Nessus, you need to:"
+    echo "Nessus is pre-installed on Cypher."
     echo ""
-    echo "1. Visit: https://www.tenable.com/downloads/nessus"
-    echo "2. Register for a free/professional license"
-    echo "3. Download the RPM package for Red Hat Enterprise Linux 9 / Oracle Linux 9 / CentOS 9"
-    echo "4. Install with: sudo rpm -ivh Nessus-*.x86_64.rpm"
-    echo "5. Start service: sudo systemctl enable --now nessusd"
-    echo "6. Access web interface: https://localhost:8834"
-    echo "7. Complete setup wizard and enter your activation code"
+    echo "To activate Nessus:"
     echo ""
-    echo "Note: Nessus requires a valid activation code to function."
-    echo "Free Essentials version is available for home use (up to 16 IPs)."
+    echo "1. Start the Nessus service (if not already running):"
+    echo "   sudo systemctl start nessusd"
     echo ""
-    read -p "Press Enter to open Tenable downloads page in your browser..."
-    xdg-open "https://www.tenable.com/downloads/nessus" 2>/dev/null || echo "Please manually visit: https://www.tenable.com/downloads/nessus"
+    echo "2. Access the web interface at: https://localhost:8834"
+    echo ""
+    echo "3. Complete the setup wizard and register for a license at:"
+    echo "   https://www.tenable.com/products/nessus/nessus-essentials"
+    echo ""
+    echo "4. Enter your activation code in the setup wizard"
+    echo ""
+    echo "5. Wait for plugins to download (may take 20-30 minutes)"
+    echo ""
+    echo "Note: Nessus Essentials is free for home use (up to 16 IPs)."
+    echo "For professional use, consider Nessus Professional."
+    echo ""
+    read -p "Press Enter to open Nessus web interface in your browser..."
+    xdg-open "https://localhost:8834" 2>/dev/null || echo "Please manually visit: https://localhost:8834"

@@ -17,6 +17,7 @@ Cypher is a Linux distribution built specifically for penetration testing and se
 ### Built-in Pentesting Tools (Build-time)
 - **hashcat** - Advanced password recovery and GPU-accelerated hash cracking
 - **hashcat-doc** - Documentation for hashcat usage
+- **Nessus 10.11.1** - Professional vulnerability scanner (pre-installed, requires activation code)
 
 ### Additional Pentesting Tools (Runtime via Homebrew)
 Install with `ujust install-default-apps`:
@@ -31,10 +32,12 @@ Install with `ujust install-default-apps`:
 - **gobuster** - Directory/file/DNS brute-forcing tool
 - **feroxbuster** - Fast content discovery tool
 
-### Commercial Tools
-- **Nessus** - Professional vulnerability scanner (requires license)
-  - Use `ujust install-nessus` for installation helper
-  - Free Essentials version available for home use (up to 16 IPs)
+### Nessus Activation
+Nessus is pre-installed but requires activation:
+1. After first boot, access Nessus at: https://localhost:8834
+2. Register for a free Essentials license at: https://www.tenable.com/products/nessus/nessus-essentials
+3. Enter your activation code in the setup wizard
+4. Free Essentials version available for home use (up to 16 IPs)
 
 *Last updated: 2026-01-14*
 
