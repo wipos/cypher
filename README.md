@@ -10,6 +10,24 @@ This template uses the **multi-stage build architecture** from , combining resou
 
 > Be the one who moves, not the one who is moved.
 
+## What Makes Cypher Different?
+
+Cypher is a Linux distribution built specifically for penetration testing and security research. Based on Universal Blue/Bluefin, it includes:
+
+### Built-in Pentesting Tools (Build-time)
+- **hashcat** - Advanced password recovery and GPU-accelerated hash cracking
+- **hashcat-doc** - Documentation for hashcat usage
+- **Nessus 10.11.1** - Professional vulnerability scanner (pre-installed, requires activation code)
+
+### Nessus Activation
+Nessus is pre-installed but requires activation:
+1. After first boot, access Nessus at: https://localhost:8834
+2. Register for a free Essentials license at: https://www.tenable.com/products/nessus/nessus-essentials
+3. Enter your activation code in the setup wizard
+4. Free Essentials version available for home use (up to 16 IPs)
+
+*Last updated: 2026-01-14*
+
 ## Guided Copilot Mode
 
 Here are the steps to guide copilot to make your own repo, or just use it like a regular image template.
