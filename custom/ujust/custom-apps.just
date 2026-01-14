@@ -78,3 +78,28 @@ install-vscode:
 [group('Apps')]
 install-gimp:
     ujust install-flatpak org.gimp.GIMP
+
+# Install Nessus vulnerability scanner (requires manual download and license)
+[group('Pentesting')]
+install-nessus:
+    #!/usr/bin/env bash
+    echo "=========================================="
+    echo "Nessus Installation Helper"
+    echo "=========================================="
+    echo ""
+    echo "Nessus is a commercial vulnerability scanner from Tenable."
+    echo "To install Nessus, you need to:"
+    echo ""
+    echo "1. Visit: https://www.tenable.com/downloads/nessus"
+    echo "2. Register for a free/professional license"
+    echo "3. Download the RPM package for Red Hat Enterprise Linux 9 / Oracle Linux 9 / CentOS 9"
+    echo "4. Install with: sudo rpm -ivh Nessus-*.x86_64.rpm"
+    echo "5. Start service: sudo systemctl enable --now nessusd"
+    echo "6. Access web interface: https://localhost:8834"
+    echo "7. Complete setup wizard and enter your activation code"
+    echo ""
+    echo "Note: Nessus requires a valid activation code to function."
+    echo "Free Essentials version is available for home use (up to 16 IPs)."
+    echo ""
+    read -p "Press Enter to open Tenable downloads page in your browser..."
+    xdg-open "https://www.tenable.com/downloads/nessus" 2>/dev/null || echo "Please manually visit: https://www.tenable.com/downloads/nessus"
